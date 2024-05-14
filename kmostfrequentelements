@@ -1,0 +1,21 @@
+class Solution:
+    def topKFrequent(self, nums, k):
+        d={}
+        for i in nums:
+            try:
+                count=d[i]
+                d[i]=count+1
+            except KeyError:
+                d[i]=1
+        sortedCountList = sorted(d.values(), reverse=True)
+        if(k<=len(sortedCountList)):
+            topCounts=sortedCountList[:k]
+            returnList=[]
+            for key,value in d.items():
+                if(value in topCounts):
+                    returnList.append(key)
+            return returnList
+
+s=Solution()
+print(s.topKFrequent([1,1,1,2,2,3],2))
+print(s.topKFrequent([1],1))
